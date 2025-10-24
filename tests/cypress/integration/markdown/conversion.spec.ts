@@ -8,6 +8,7 @@ import { BulletList, ListItem, OrderedList, TaskItem, TaskList } from '@tiptap/e
 import { Mention } from '@tiptap/extension-mention'
 import { Paragraph } from '@tiptap/extension-paragraph'
 import { Text } from '@tiptap/extension-text'
+import { Underline } from '@tiptap/extension-underline'
 import { Youtube } from '@tiptap/extension-youtube'
 import { MarkdownManager } from '@tiptap/markdown'
 
@@ -22,6 +23,7 @@ describe('Markdown Conversion Tests', () => {
     Italic,
     Link,
     Heading,
+    Underline,
     BulletList,
     OrderedList,
     ListItem,
@@ -127,12 +129,14 @@ describe('Markdown Conversion Tests', () => {
 
         const normalizedActual = JSON.parse(JSON.stringify(json))
         const normalizedExpected = JSON.parse(JSON.stringify(file.expectedOutput))
+        console.log({ actual: normalizedActual, expected: normalizedExpected })
 
         expect(normalizedActual).to.deep.equal(normalizedExpected)
       })
 
       it(`should convert ${file.name} JSON structure back to expected markdown`, () => {
         const md = markdownManager.serialize(file.expectedOutput)
+        console.log({ actual: md.trim(), expected: file.expectedInput.trim() })
         expect(md.trim()).to.equal(file.expectedInput.trim())
       })
     })

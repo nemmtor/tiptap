@@ -1,3 +1,4 @@
+export * as combinationOfMarks from './combination-of-marks.js'
 export * as customAtom from './custom-atom.js'
 export * as customBlock from './custom-block.js'
 export * as customInline from './custom-inline.js'
